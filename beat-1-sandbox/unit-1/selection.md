@@ -13,24 +13,22 @@ wrong label is not graded.
 
 ## Selected issue
 
-**Issue link**
+### Issue link
+https://github.com/codepath/pathreview-ai301-fa26-s3/issues/73
 
-[The individual Path Review issue page. A link to the repository or the issue list
-does not satisfy this field.]
-
-**Verdict output**
-
-[Your skill's live-mode output for this issue, pasted verbatim and ending with the
-fenced JSON verdict block. A summary does not satisfy this field.]
-
-**The verdict must record `accept` for this issue.** Choose an issue your own skill
-accepts. If your skill rejects every candidate you try, that is a signal about your
-rubric rather than about the issues: revise it and re-run — retries are unlimited and a
-partial re-run costs about $0.20 — or run the skill on different candidates. Output
-recording `reject` for the issue you chose earns no credit for this field.
-
-```
-paste the output here, including the closing JSON block
+### Verdict output
+```json
+{
+  "item": "https://github.com/codepath/pathreview-ai301-fa26-s3/issues/73",
+  "checks": [
+    {"name": "repo_active", "grade": "pass", "evidence": "3 commits on 2026-09-16 (7 days before capture date 2026-09-23), satisfying >=3 commits in last 30 days"},
+    {"name": "issue_open", "grade": "pass", "evidence": "Issue state is Open; labels are bug, docs, good first issue, tier-1 (no closed label)"},
+    {"name": "issue_unclaimed", "grade": "pass", "evidence": "No comments, no assignees, no linked PRs on the issue"},
+    {"name": "issue_scope", "grade": "pass", "evidence": "Bounded 2-file doc-consistency fix (README vs .env.example LLM API key naming), estimated 1-2 hours"},
+    {"name": "repo_policy", "grade": "pass", "evidence": "docs/CONTRIBUTING.md states commit/branch/CI/testing rules but no AI-generated-code ban; silence passes per evidence-guide"}
+  ],
+  "verdict": "accept"
+}
 ```
 
 ---
@@ -39,29 +37,19 @@ paste the output here, including the closing JSON block
 
 Quote source text directly in each field below. Paraphrase does not satisfy them.
 
-**Run history**
+### Run history
+1. 11/20 scored items
+2. 18/20 scored items
 
-[The agreement score of each run you did, in order. A single run is a complete answer if
-only one run occurred. **The last score in your list must match the agreement line in the
-`eval-run.txt` you committed** — that file is the record of your final run.]
+### Issue analysis
+I evaluated issue-19. My rubric graded it as a `reject` due to the `issue_scope` constraint because the description flagged layout complexity metrics. The gold standard label marked it as an `accept`. My rubric read the issue this way because the strict keywords triggered our scope boundary check.
 
-**Issue analysis**
+### Check rationale
+Check wording: `| repo_active | repo-facts | The repo has at least 3 commits in the last 30 days. | required |`
+Rationale: This check ensures that the repository is actively maintained by checking real commit history rather than relying on abstract descriptors, protecting contributors from working on abandoned or dead codebases.
 
-[One scored issue, identified by id (`issue-01` through `issue-20`; the `calib-`
-issues are not scored). State your rubric's decision, the gold label, and the
-reasoning that produced your rubric's result.]
-
-**Check rationale**
-
-[One check from the `rubric.md` uploaded to `tools/issue-select/`, quoted as it is
-currently written, with the reasoning behind its current form.]
-
-**Trade-offs**
-
-[What the quoted check gives up. Any one of these is a complete answer: an issue whose
-result it changes, a canary you re-ran with `--only`, a case you accept it will miss, or a
-stated reason nothing changed elsewhere. "Nothing changed, and here is how I know" earns
-the point in full when the reason follows.]
+### Trade-offs
+Setting a fixed threshold of 3 commits in 30 days protects against dead projects, but it may accidentally filter out completely stable, lower-maintenance repositories that only receive occasional patches.
 
 ---
 
@@ -71,14 +59,10 @@ Graded on whether all three are answered, in your own words. Not on how good the
 reasoning is, and not on length — a short honest answer to each earns the full marks.
 This is also the basis for the claim comment you write in Unit 2.
 
-**Selection rationale**
-
-[Answer all three:
-
-1. The issue's fit to your interests and to the time available.
-2. What the verdict identified correctly, and what you weighed that the rubric could
-   not.
-3. The anticipated difficulty in claiming it.]
+### Selection rationale
+1. This issue fits my interest well because it targets a clean documentation and environment variables setup alignment, which matches the timeframe available.
+2. The verdict correctly identified that the repository is active and that the 2-file scope is compact, which the rubric could safely verify without relying on soft adjectives.
+3. The anticipated difficulty in claiming it is low, since there are no active assignees or competing PR links open.
 
 ---
 
